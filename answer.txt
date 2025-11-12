@@ -1,0 +1,24 @@
+Question 1. How does CI/CD improve collaboration in ML teams?
+Ans:
+CI/CD basically automates testing, validation, and deployment, which means all team members can work with consistent code
+and models. It's like having a safety net that gives immediate feedback on changes and prevents breaking builds. 
+This way, data scientists, engineers, and DevOps teams can integrate their work seamlessly without stepping on each other's toes.
+
+Question 2. What happens if the evaluation score is below a defined threshold?
+Ans:
+When the evaluation score drops below the threshold, the pipeline just fails and stops everything.
+It's like a checkpoint that won't let a low-quality model through to production. The team gets notified about 
+the failure, and developers need to go back, figure out what went wrong, and fix it before they can try deploying again.
+
+Question 3. How can retraining or drift detection be integrated into this workflow?
+Ans:
+You can add scheduled workflows, like cron jobs, that periodically check for data drift and monitor how the model is performing in production. When drift
+is detected or performance starts dropping, it triggers automated retraining. Tools like Evidently or Great Expectations are 
+really helpful for this kind of drift detection, and you just include these checks as part of your CI/CD pipeline.
+
+Question 4. What steps are needed to deploy this workflow to production (e.g., AWS, Kubernetes)?
+Ans:
+First, you need to configure your cloud credentials as GitHub secrets, like AWS keys or Kubernetes config. 
+Then you add deployment steps in GitHub Actions to push Docker images to container registries like ECR or Docker Hub. 
+After that, you create Kubernetes manifests or use Helm charts for orchestration, and set up infrastructure as code using tools like Terraform or CloudFormation. 
+You also want to configure monitoring and logging with CloudWatch or Prometheus, and implement deployment strategies like blue-green or canary deployments to make rollouts safer.
